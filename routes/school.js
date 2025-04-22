@@ -3,7 +3,12 @@ const router = express.Router();
 const db = require('../db.js')
 
 router.post('/addSchool', (req, res)=>{
+    if(!req.body){
+        return res.status(400).json({message: 'Please provide all required fields'});
+    }
     const {name,address, lat,long} = req.body;
+
+    
 
     if(!name || !address || !lat || !long){
         return res.status(400).json({message: 'Please provide all required fields'});
@@ -21,6 +26,8 @@ router.post('/addSchool', (req, res)=>{
 router.get('/getSchool', (req, res)=>{
     const userLat = req.query.lat;
     const userLong = req.query.long;
+    console.log("userLat", userLat);
+    console.log("userLong", userLong);
     if(isNaN(userLat) || isNaN(userLong)){
         return res.status(400).json({message: 'Please provide valid latitude and longitude'});
     }

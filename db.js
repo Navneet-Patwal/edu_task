@@ -1,10 +1,6 @@
 const mysql = require('mysql2');
-const  connection = mysql.createConnection({ 
-    host: 'localhost',
-    user: 'navneet',
-    password: 'navneet@789',
-    database: 'school'
-});
+require('dotenv').config();
+const  connection = mysql.createConnection(process.env.DB_URL);
 
 connection.connect((err) => {
     if (err) {
@@ -13,3 +9,5 @@ connection.connect((err) => {
     }
     console.log('Connected to the database.');
 });
+
+module.exports = connection;
