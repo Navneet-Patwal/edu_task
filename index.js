@@ -13,9 +13,9 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 }
 )
-app.use('/',schoolRoutes);
+app.use('/api',schoolRoutes);
 
 
-app.listen(port, () => {
+app.listen(3306, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
